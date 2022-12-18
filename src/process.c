@@ -6,7 +6,7 @@
 /*   By: jonascim <jonascim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:05:16 by jonascim          #+#    #+#             */
-/*   Updated: 2022/12/18 11:14:27 by jonascim         ###   ########.fr       */
+/*   Updated: 2022/12/18 11:46:46 by jonascim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	*get_command(char **paths, char *cmd)
 
 void	first_child(t_pipex pipex, char **argv, char **envp)
 {
+	int	ret;
+
 	dup2(pipex.pipe[1], STDOUT_FILENO);
 	close(pipex.pipe[0]);
 	dup2(pipex.infile, STDIN_FILENO);
@@ -42,11 +44,15 @@ void	first_child(t_pipex pipex, char **argv, char **envp)
 		message(ERROR_CMD);
 		exit(1);
 	}
-	execve(pipex.cmd, pipex.cmd_args, envp);
+	ret = execve(pipex.cmd, pipex.cmd_args, envp);
+	if (ret == -1)
+		error_message("Execve() Failed");
 }
 
 void	second_child(t_pipex pipex, char **argv, char **envp)
 {
+	int	ret;
+
 	dup2(pipex.pipe[0], STDIN_FILENO);
 	close(pipex.pipe[1]);
 	dup2(pipex.outfile, STDOUT_FILENO);
@@ -58,5 +64,7 @@ void	second_child(t_pipex pipex, char **argv, char **envp)
 		message(ERROR_CMD);
 		exit(1);
 	}
-	execve(pipex.cmd, pipex.cmd_args, envp);
+	ret = execve(pipex.cmd, pipex.cmd_args, envp);
+	if (ret == -1)
+		error_message("Execve() Failed");
 }
