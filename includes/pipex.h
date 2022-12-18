@@ -6,7 +6,7 @@
 /*   By: jonascim <jonascim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 08:35:12 by jonascim          #+#    #+#             */
-/*   Updated: 2022/12/18 09:52:35 by jonascim         ###   ########.fr       */
+/*   Updated: 2022/12/18 11:14:25 by jonascim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ typedef struct s_pipex
 	char	**cmd_args;
 }	t_pipex;
 
-void	close_pipes(t_pipex *pipex);
-char	*check_path(char **envp);
-char	*get_command(char **paths, char *cmd);
-void	first_child(t_pipex pipex, char **argv, char **envp);
-void	second_child(t_pipex pipex, char **argv, char **envp);
-void	error_message(char *error);
-int		message(char *error);
-void	free_child(t_pipex *pipex);
-void	free_parent(t_pipex *pipex);
+void		close_pipes(t_pipex *pipex);
+char		*check_path(char **envp);
+static char	*get_command(char **paths, char *cmd);
+void		first_child(t_pipex pipex, char **argv, char **envp);
+void		second_child(t_pipex pipex, char **argv, char **envp);
+void		error_message(char *error);
+int			message(char *error);
+void		free_child(t_pipex *pipex);
+void		free_parent(t_pipex *pipex);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jonascim <jonascim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:05:16 by jonascim          #+#    #+#             */
-/*   Updated: 2022/12/18 09:58:07 by jonascim         ###   ########.fr       */
+/*   Updated: 2022/12/18 11:14:27 by jonascim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char	*get_command(char **paths, char *cmd)
+static char	*get_command(char **paths, char *cmd)
 {
 	char	*aux;
 	char	*command;

@@ -6,7 +6,7 @@
 /*   By: jonascim <jonascim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:12:16 by jonascim          #+#    #+#             */
-/*   Updated: 2022/12/18 10:15:22 by jonascim         ###   ########.fr       */
+/*   Updated: 2022/12/18 11:14:30 by jonascim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 		first_child(pipex, argv, envp);
 	pipex.pid2 = fork();
 	if (pipex.pid2 == 0)
-		first_child(pipex, argv, envp);
+		second_child(pipex, argv, envp);
 	close_pipes(&pipex);
 	waitpid(pipex.pid1, NULL, 0);
 	waitpid(pipex.pid2, NULL, 0);
