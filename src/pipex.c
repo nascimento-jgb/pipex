@@ -6,7 +6,7 @@
 /*   By: jonascim <jonascim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:12:16 by jonascim          #+#    #+#             */
-/*   Updated: 2022/12/18 09:55:07 by jonascim         ###   ########.fr       */
+/*   Updated: 2022/12/18 10:15:22 by jonascim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
 		error_message(ERROR_INFILE);
-	pipex.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0777);
+	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (pipex.outfile < 0)
 		error_message(ERROR_OUTFILE);
 	if (pipe(pipex.pipe) < 0)
